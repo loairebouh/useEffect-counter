@@ -1,28 +1,37 @@
 import { useState } from "react";
 
 function MyComponent() {
-	const [count, setCount] = useState(0);
-	function increament() {
-		setCount((c) => c + 1);
-		setCount((c) => c + 1);
-		setCount((c) => c + 1);
+	const [car, setCar] = useState({
+		year: 2024,
+		make: "Ford",
+		model: "Mustang",
+	});
+	function handleYearChange() {
+		setCar((c) => ({ ...c, year: event.target.value }));
 	}
-	function decreament() {
-		setCount((c) => c - 1);
-		setCount((c) => c - 1);
+	function handleMakeChange() {
+		setCar((c) => ({ ...c, make: event.target.value }));
 	}
-	function reset() {
-		setCount(0);
+	function handleModelChange() {
+		setCar((c) => ({ ...c, model: event.target.value }));
 	}
 	return (
 		<>
 			<div>
-				<h1>COUNT : {count}</h1>
-			</div>
-			<div>
-				<button onClick={increament}>Increament</button>
-				<button onClick={decreament}>Decreament</button>
-				<button onClick={reset}>Reset</button>
+				<p>
+					Your favourite car is : {car.year} {car.make} {car.model}
+				</p>
+				<input
+					type="number"
+					value={car.year}
+					onChange={handleYearChange}
+				></input>
+				<input type="text" value={car.make} onChange={handleMakeChange}></input>
+				<input
+					type="text"
+					value={car.model}
+					onChange={handleModelChange}
+				></input>
 			</div>
 		</>
 	);
